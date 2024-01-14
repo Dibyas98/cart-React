@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import CartItems from './CartItems';
-import Total from './Total';
+import CartItems from './CartItems'; // Assuming you have a CartItems component
+import Total from './Total'; // Assuming you have a Total component
 import { nanoid } from 'nanoid';
 
 export default function Cart({ cartItems }) {
-  const final = cartItems.reduce((total, item) => total + (item.qty*item.price), 0);
-  const [tot, setTot] = useState(final);
-  useEffect(()=>{
-    setTot(final)
-  },[final])
+  const [cartS, setcart] = useState([]);
+  const [tot, setTot] = useState(0);
+
+  useEffect(() => {
+    const updatecart = cartItems.filter((ele) => ele.qty > 0);
+    setcart(updatecart);
+    
+    const final = updatecart.reduce((total, item) => total + item.qty * item.price, 0);
+    setTot(final);
+  }, [cartItems]);
 
   const gridS = {
     gridTemplateRows: '0.5fr 3fr 0.5fr',
@@ -19,9 +24,11 @@ export default function Cart({ cartItems }) {
     <div className='w-72 border-4 grid p-3' style={gridS}>
       <h1 className='text-2xl font-semibold text-center pb-3'>Cart</h1>
       <div>
-        {cartItems.length>0? cartItems.map((item) => (
-          item.qty>0?<CartItems ite={item} key={nanoid()} />:null
-        )):<h1 className='text-2xl text-center font-bold'>No Items added</h1>}
+        {cartS.length > 0 ? (
+          cartS.map((item) => (item.qty > 0 ? <CartItems ite={item} key={nanoid()} /> : null))
+        ) : (
+          <h1 className='text-2xl text-center font-bold'>No Items added</h1>
+        )}
       </div>
       <div className='place-self-stretch bg-slate-500 flex justify-between p-3 items-center'>
         <Total total={tot} />

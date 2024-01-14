@@ -13,7 +13,7 @@ export default function Screen() {
   };
   
 
-  console.log(cartItems);
+  // console.log(cartItems);
 
   return (
     <div className='flex gap-5 w-1/2 m-auto mt-14'>

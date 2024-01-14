@@ -4,6 +4,7 @@ export default function ItemCont({ items, id, cartlist }) {
 
   const [cartItems, setCartItems] = useState([]);
   
+  
 
 
   const [qnt, setQnt] = useState({
