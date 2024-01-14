@@ -8,11 +8,12 @@ export default function Screen() {
   const [cartItems, setCartItems] = useState([]);
 
   const handleCart = (arg) => {
-    const filteredData = cartItems.filter((item) => item.id !== arg.id);
-    setCartItems([...filteredData, arg]);
+    const filteredData1 = cartItems.filter((item) => item.id !== arg.id);
+    setCartItems([...filteredData1, arg]);
   };
+  
 
-  // console.log(cartItems);
+  console.log(cartItems);
 
   return (
     <div className='flex gap-5 w-1/2 m-auto mt-14'>

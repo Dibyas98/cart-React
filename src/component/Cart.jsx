@@ -20,7 +20,7 @@ export default function Cart({ cartItems }) {
       <h1 className='text-2xl font-semibold text-center pb-3'>Cart</h1>
       <div>
         {cartItems.length>0? cartItems.map((item) => (
-          <CartItems ite={item} key={nanoid()} />
+          item.qty>0?<CartItems ite={item} key={nanoid()} />:null
         )):<h1 className='text-2xl text-center font-bold'>No Items added</h1>}
       </div>
       <div className='place-self-stretch bg-slate-500 flex justify-between p-3 items-center'>
