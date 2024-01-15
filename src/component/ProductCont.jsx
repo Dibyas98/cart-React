@@ -10,7 +10,16 @@ const Products = [
     ] 
     
 
-export default function ProductCont({cartlist}) {
+export default function ProductCont({}) {
+    const productContext = useContext(ProductContext)
+    
+
+    const [cartItems, setCartItems] = useState([]);
+
+  const handleCart = (arg) => {
+    const filteredData1 = productContext.data.filter((item) => item.id !== arg.id);
+    productContext.setData([...filteredData1, arg]);
+  };
    
   return (
     <div className='border-4 w-2/3 py-5 p-3'>
@@ -19,7 +28,7 @@ export default function ProductCont({cartlist}) {
             {
                 Products.map(items =>{
                     // const id= ;
-                    return <ItemCont key={items.id} items={items}  cartlist={cartlist}/>
+                    return <ItemCont key={items.id} items={items}  cartlist={handleCart}/>
                 })
             }
         </div>
